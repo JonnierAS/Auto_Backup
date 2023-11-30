@@ -5,7 +5,7 @@ console.log('Before job instantiation');
 
 const { DB, HOST, PORT, USER } = process.env;
 
-const job = new CronJob('9 8,11 * * *', function () {
+const job = new CronJob('00 13,18 * * *', function () {
     const currentDate = new Date();
     currentDate.setHours(currentDate.getHours() - 5);
 
@@ -19,7 +19,7 @@ const job = new CronJob('9 8,11 * * *', function () {
         timeZone: 'UTC'
     }).replace(/[\/\,\:\s]/g, "_");
 
-    console.log('Every 270 minutes between 9-17:', formattedDate);
+    console.log('Only 1:30pm and 6pm:', formattedDate);
 
     const command = `cmd /c start /min C:\\Program" "Files\\PostgreSQL\\15\\bin\\pg_dump --host ${HOST} --port ${PORT} --username ${USER} --format custom --file "C:\\Users\\USUARIO\\Desktop\\Respaldos_BD\\pruebaGeo_${formattedDate}.sql" ${DB}`;
 
